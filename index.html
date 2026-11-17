@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Wave Motion II · 牛津 HKDSE 物理 3B 互动精讲学习站</title>
+  <meta name="description" content="Oxford Physics at Work for HKDSE — Book 3B: Wave Motion II 全书知识点精讲、连环追问推导、知识关系图谱、7大交互物理实验室、三阶闯关与章节模考卷" />
+
+  <!-- KaTeX (Non-blocking load + built-in offline textbook math engine fallback) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" />
+  <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="window.__onKatexReady && window.__onKatexReady()"></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Top Navigation Header -->
+  <header class="top-header">
+    <div class="header-left">
+      <button id="mobileMenuBtn" class="icon-btn mobile-only" aria-label="打开章节目录">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="brand" id="brandHomeBtn" role="button" tabindex="0">
+        <div class="brand-badge">3B</div>
+        <div class="brand-text">
+          <span class="brand-series">OXFORD PHYSICS AT WORK · HKDSE</span>
+          <span class="brand-title">Wave Motion II 波动学精讲站</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="main-tabs" aria-label="主功能导航">
+      <button class="nav-tab active" data-view="learn">
+        <span class="tab-icon">📖</span>
+        <span>章节精讲</span>
+      </button>
+      <button class="nav-tab" data-view="map">
+        <span class="tab-icon">🕸️</span>
+        <span>知识关系图谱</span>
+      </button>
+      <button class="nav-tab" data-view="labs">
+        <span class="tab-icon">🔬</span>
+        <span>波动实验室</span>
+      </button>
+      <button class="nav-tab" data-view="exam">
+        <span class="tab-icon">📝</span>
+        <span>章节模考卷</span>
+      </button>
+      <button class="nav-tab" data-view="reference">
+        <span class="tab-icon">🗂️</span>
+        <span>公式表 &amp; 闪卡</span>
+      </button>
+      <button class="nav-tab" data-view="mistakes">
+        <span class="tab-icon">⭐</span>
+        <span>错题与进度</span>
+        <span id="mistakeCountBadge" class="mini-badge hidden">0</span>
+      </button>
+    </nav>
+
+    <div class="header-right">
+      <div class="global-progress-pill" title="全书三阶闯关掌握进度">
+        <span class="progress-label">掌握度</span>
+        <div class="mini-progress-bar">
+          <div id="globalProgressFill" class="mini-progress-fill" style="width: 0%"></div>
+        </div>
+        <span id="globalProgressText" class="progress-pct">0%</span>
+      </div>
+      <button id="searchOpenBtn" class="icon-btn" title="搜索知识点、公式或英文术语 (⌘K / Ctrl+K)" aria-label="搜索">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button id="themeToggleBtn" class="icon-btn" title="切换护眼浅色 / 夜间深色模式" aria-label="切换主题">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebarBackdrop" class="sidebar-backdrop hidden"></div>
+
+  <!-- Main Workspace Container -->
+  <div class="app-shell">
+    <!-- Left Chapter & Section Sidebar -->
+    <aside id="chapterSidebar" class="chapter-sidebar">
+      <div class="sidebar-header">
+        <div>
+          <div class="sidebar-eyebrow">Book 3B · Core &amp; *Extension</div>
+          <div class="sidebar-heading">全书 17 节目录与掌握度</div>
+        </div>
+        <button id="closeSidebarBtn" class="icon-btn mobile-only" aria-label="关闭目录">✕</button>
+      </div>
+
+      <div id="sidebarChapterList" class="sidebar-chapter-list"></div>
+
+      <div class="sidebar-footer-tip">
+        <div class="tip-title">💡 推荐四步高效学法</div>
+        <p>① 看<strong>生活案例</strong>建直觉 → ② 点<strong>连环追问</strong>自己推公式 → ③ 玩<strong>波动实验室</strong>验证 → ④ 通关<strong>三阶闯关 &amp; 章节模考卷</strong>拿满英文 DSE 得分点！</p>
+      </div>
+    </aside>
+
+    <!-- Primary Content Area -->
+    <main id="mainContent" class="main-content">
+      <!-- View 1: Chapter & Section Learning View -->
+      <section id="view-learn" class="view-panel active">
+        <div id="learnOverviewBanner"></div>
+        <div id="sectionContentContainer"></div>
+      </section>
+
+      <!-- View 2: Interactive Knowledge Relationship Map -->
+      <section id="view-map" class="view-panel hidden">
+        <div id="mapContainer"></div>
+      </section>
+
+      <!-- View 3: Interactive Physics Labs -->
+      <section id="view-labs" class="view-panel hidden">
+        <div id="labsPageContainer"></div>
+      </section>
+
+      <!-- View 4: Chapter Mock Quizzes (MC + SQ) -->
+      <section id="view-exam" class="view-panel hidden">
+        <div id="examPageContainer"></div>
+      </section>
+
+      <!-- View 5: Formula Sheet & Bilingual Term Flashcards -->
+      <section id="view-reference" class="view-panel hidden">
+        <div id="referenceContainer"></div>
+      </section>
+
+      <!-- View 6: Mistake Notebook & Mastery Dashboard -->
+      <section id="view-mistakes" class="view-panel hidden">
+        <div id="mistakesContainer"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Quick Search Modal -->
+  <div id="searchModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="全书搜索">
+    <div class="search-modal-card">
+      <div class="search-input-row">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="text" placeholder="输入中文概念、英文术语（如 wavefront / grating / antinode / ultrasound）或公式..." autocomplete="off" />
+        <button id="searchCloseBtn" class="text-btn">关闭</button>
+      </div>
+      <div id="searchResults" class="search-results">
+        <div class="search-empty-hint">可搜索全书 4 章 17 节核心与星号延展知识点、12 组必考公式及 56 张中英术语闪卡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ordered Scripts (100% local file:// & iPad Safari compatible, zero server needed) -->
+  <script src="js/data-ch4.js"></script>
+  <script src="js/data-ch5.js"></script>
+  <script src="js/data-ch6.js"></script>
+  <script src="js/data-ch7.js"></script>
+  <script src="js/data-map-glossary.js"></script>
+  <script src="js/data-exams.js"></script>
+  <script src="js/labs.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
